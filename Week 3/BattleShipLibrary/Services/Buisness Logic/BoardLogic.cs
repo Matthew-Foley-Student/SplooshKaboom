@@ -65,7 +65,7 @@ namespace BattleShipLibrary.Services.Buisness_Logic
                     board = AttemptPlaceSubmarineDownRight(board, currentCell);
                     break;
                 case "submarinedl":
-                    board = AttemptPlaceSubmarineDownLefet(board,currentCell);
+                    board = AttemptPlaceSubmarineDownLeft(board,currentCell);
                     break;
 
 
@@ -102,9 +102,11 @@ namespace BattleShipLibrary.Services.Buisness_Logic
             int[] SubCol = {0, 1, 2};
             for (int i = 0; i < SubRow.Length; i++)
             {
-                if (IsOnBoard(board, currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]) && board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType == "")
+                if (IsOnBoard(board, currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]) 
+                    && 
+                    board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType == "")
                 {
-                    board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType = "S";
+                    board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType = "Sul";
                     SubCheck++;
                 }
             }
@@ -116,7 +118,9 @@ namespace BattleShipLibrary.Services.Buisness_Logic
             {
                 for (int i = 0; i < SubRow.Length; i++)
                 {
-                    if (IsOnBoard(board, currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]) && board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType == "S")
+                    if (IsOnBoard(board, currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]) 
+                        && 
+                        board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType == "Sul")
                     {
                         board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType = "";
                     }
@@ -132,9 +136,11 @@ namespace BattleShipLibrary.Services.Buisness_Logic
             int[] SubCol = { 0, 1, 2 };
             for (int i = 0; i < SubRow.Length; i++)
             {
-                if (IsOnBoard(board, currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]) && board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType == "")
+                if (IsOnBoard(board, currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]) 
+                    && 
+                    board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType == "")
                 {
-                    board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType = "S";
+                    board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType = "Sur";
                     SubCheck++;
                 }
             }
@@ -146,7 +152,9 @@ namespace BattleShipLibrary.Services.Buisness_Logic
             {
                 for (int i = 0; i < SubRow.Length; i++)
                 {
-                    if (IsOnBoard(board, currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]) && board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType == "S")
+                    if (IsOnBoard(board, currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]) 
+                        && 
+                        board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType == "Sur")
                     {
                         board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType = "";
                     }
@@ -155,16 +163,18 @@ namespace BattleShipLibrary.Services.Buisness_Logic
                 return board;
             }
         }
-        private BoardModel AttemptPlaceSubmarineDownLefet(BoardModel board, CellModel currentCell)
+        private BoardModel AttemptPlaceSubmarineDownLeft(BoardModel board, CellModel currentCell)
         {
             int SubCheck = 0;
             int[] SubRow = { 0, -1, -2 };
             int[] SubCol = { 0, -1, 2 };
             for (int i = 0; i < SubRow.Length; i++)
             {
-                if (IsOnBoard(board, currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]) && board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType == "")
+                if (IsOnBoard(board, currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]) 
+                    && 
+                    board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType == "")
                 {
-                    board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType = "S";
+                    board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType = "Sdl";
                     SubCheck++;
                 }
             }
@@ -176,7 +186,9 @@ namespace BattleShipLibrary.Services.Buisness_Logic
             {
                 for (int i = 0; i < SubRow.Length; i++)
                 {
-                    if (IsOnBoard(board, currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]) && board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType == "S")
+                    if (IsOnBoard(board, currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]) 
+                        && 
+                        board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType == "Sdl")
                     {
                         board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType = "";
                     }
@@ -192,9 +204,11 @@ namespace BattleShipLibrary.Services.Buisness_Logic
             int[] SubCol = { 0, -1, -2 };
             for (int i = 0; i < SubRow.Length; i++)
             {
-                if (IsOnBoard(board, currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]) && board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType == "")
+                if (IsOnBoard(board, currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]) 
+                    && 
+                    board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType == "")
                 {
-                    board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType = "S";
+                    board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType = "Sdr";
                     SubCheck++;
                 }
             }
@@ -206,7 +220,9 @@ namespace BattleShipLibrary.Services.Buisness_Logic
             {
                 for (int i = 0; i < SubRow.Length; i++)
                 {
-                    if (IsOnBoard(board, currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]) && board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType == "S")
+                    if (IsOnBoard(board, currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]) 
+                        && 
+                        board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType == "Sdr")
                     {
                         board.Grid[currentCell.Row + SubRow[i], currentCell.Collumn + SubCol[i]].ShipType = "";
                     }
@@ -227,7 +243,9 @@ namespace BattleShipLibrary.Services.Buisness_Logic
             int[] destroyerCol = { 0, 0, 1, 1 };
             for (int i = 0; i < destroyerRow.Length; i++)
             {
-                if (IsOnBoard(board, currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]) && board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType == "")
+                if (IsOnBoard(board, currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]) 
+                    && 
+                    board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType == "")
                 {
                     board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType = "D";
                     destroyCheck++;
@@ -241,7 +259,9 @@ namespace BattleShipLibrary.Services.Buisness_Logic
             {
                 for (int i = 0; i < destroyerRow.Length; i++)
                 {
-                    if (IsOnBoard(board, currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]) && board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType == "D")
+                    if (IsOnBoard(board, currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]) 
+                        && 
+                        board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType == "D")
                     {
                         board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType = "";
                     }
@@ -257,7 +277,9 @@ namespace BattleShipLibrary.Services.Buisness_Logic
             int[] destroyerCol = { 0, 0, -1, -1 };
             for (int i = 0; i < destroyerRow.Length; i++)
             {
-                if (IsOnBoard(board, currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]) && board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType == "")
+                if (IsOnBoard(board, currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]) 
+                    && 
+                    board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType == "")
                 {
                     board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType = "D";
                     destroyCheck++;
@@ -271,7 +293,9 @@ namespace BattleShipLibrary.Services.Buisness_Logic
             {
                 for (int i = 0; i < destroyerRow.Length; i++)
                 {
-                    if (IsOnBoard(board, currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]) && board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType == "D")
+                    if (IsOnBoard(board, currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]) 
+                        && 
+                        board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType == "D")
                     {
                         board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType = "";
                     }
@@ -287,9 +311,11 @@ namespace BattleShipLibrary.Services.Buisness_Logic
             int[] destroyerCol = { 0, 0, -1, -1 };
             for (int i = 0; i < destroyerRow.Length; i++)
             {
-                if (IsOnBoard(board, currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]) && board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType == "")
+                if (IsOnBoard(board, currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]) 
+                    && 
+                    board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType == "")
                 {
-                    board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType = "D";
+                    board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType = "Ddr";
                     destroyCheck++;
                 }
             }
@@ -301,7 +327,9 @@ namespace BattleShipLibrary.Services.Buisness_Logic
             {
                 for (int i = 0; i < destroyerRow.Length; i++)
                 {
-                    if (IsOnBoard(board, currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]) && board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType == "D")
+                    if (IsOnBoard(board, currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]) 
+                        && 
+                        board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType == "D")
                     {
                         board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType = "";
                     }
@@ -317,7 +345,9 @@ namespace BattleShipLibrary.Services.Buisness_Logic
                 int[] destroyerCol = { 0, 0, 1, 1 };
                 for (int i = 0; i < destroyerRow.Length; i++)
                 {
-                    if (IsOnBoard(board, currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]) && board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType == "")
+                    if (IsOnBoard(board, currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]) 
+                    && 
+                    board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType == "")
                     {
                         board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType = "D";
                         destroyCheck++;
@@ -331,7 +361,9 @@ namespace BattleShipLibrary.Services.Buisness_Logic
                 {
                     for (int i = 0; i < destroyerRow.Length; i++)
                     {
-                        if (IsOnBoard(board, currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]) && board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType == "D")
+                        if (IsOnBoard(board, currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]) 
+                        && 
+                        board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType == "D")
                         {
                             board.Grid[currentCell.Row + destroyerRow[i], currentCell.Collumn + destroyerCol[i]].ShipType = "";
                         }
@@ -352,7 +384,10 @@ namespace BattleShipLibrary.Services.Buisness_Logic
             int[] CruiserCol = {0,0,0};
             for (int i = 0; i < CruiserRow.Length; i++)
             {
-                if (IsOnBoard(board, currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]) && board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType == "")
+                if (IsOnBoard(board, currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]) 
+                    && 
+                    board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn 
+                    + CruiserCol[i]].ShipType == "")
                 {
                     board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType = "C";
                     CruiserCheck++;
@@ -366,7 +401,9 @@ namespace BattleShipLibrary.Services.Buisness_Logic
             {
                 for (int i = 0; i < CruiserRow.Length; i++)
                 {
-                    if (IsOnBoard(board, currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]) && board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType == "C")
+                    if (IsOnBoard(board, currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]) 
+                        && 
+                        board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType == "C")
                     {
                         board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType = "";
                     }
@@ -382,7 +419,9 @@ namespace BattleShipLibrary.Services.Buisness_Logic
             int[] CruiserCol = { 0, 1, 2 };
             for (int i = 0; i < CruiserRow.Length; i++)
             {
-                if (IsOnBoard(board, currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]) && board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType == "")
+                if (IsOnBoard(board, currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]) 
+                    && 
+                    board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType == "")
                 {
                     board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType = "C";
                     CruiserCheck++;
@@ -396,7 +435,9 @@ namespace BattleShipLibrary.Services.Buisness_Logic
             {
                 for (int i = 0; i < CruiserRow.Length; i++)
                 {
-                    if (IsOnBoard(board, currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]) && board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType == "C")
+                    if (IsOnBoard(board, currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]) 
+                        && 
+                        board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType == "C")
                     {
                         board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType = "";
                     }
@@ -412,7 +453,9 @@ namespace BattleShipLibrary.Services.Buisness_Logic
             int[] CruiserCol = { 0, -1, -2 };
             for (int i = 0; i < CruiserRow.Length; i++)
             {
-                if (IsOnBoard(board, currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]) && board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType == "")
+                if (IsOnBoard(board, currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]) 
+                    && 
+                    board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType == "")
                 {
                     board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType = "C";
                     CruiserCheck++;
@@ -426,7 +469,9 @@ namespace BattleShipLibrary.Services.Buisness_Logic
             {
                 for (int i = 0; i < CruiserRow.Length; i++)
                 {
-                    if (IsOnBoard(board, currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]) && board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType == "C")
+                    if (IsOnBoard(board, currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]) 
+                        && 
+                        board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType == "C")
                     {
                         board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType = "";
                     }
@@ -442,7 +487,9 @@ namespace BattleShipLibrary.Services.Buisness_Logic
             int[] CruiserCol = { 0, 0, 0 };
             for (int i = 0; i < CruiserRow.Length; i++)
             {
-                if (IsOnBoard(board, currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]) && board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType == "")
+                if (IsOnBoard(board, currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]) 
+                    && 
+                    board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType == "")
                 {
                     board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType = "C";
                     CruiserCheck++;
@@ -456,7 +503,9 @@ namespace BattleShipLibrary.Services.Buisness_Logic
             {
                 for (int i = 0; i < CruiserRow.Length; i++)
                 {
-                    if (IsOnBoard(board, currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]) && board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType == "C")
+                    if (IsOnBoard(board, currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]) 
+                        && 
+                        board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType == "C")
                     {
                         board.Grid[currentCell.Row + CruiserRow[i], currentCell.Collumn + CruiserCol[i]].ShipType = "";
                     }
