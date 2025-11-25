@@ -9,6 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="PlayerPlacements.cs" />
+    <Compile Remove="PlayerPlacements.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="PlayerPlacements.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BattleShipLibrary\BattleShipLibrary.csproj" />
   </ItemGroup>
 

@@ -22,10 +22,12 @@ namespace SplooshKaboom
         int des = 0;
         TimeSpan timeElapse = new TimeSpan();
         bool endturnbool = false;
-        public frmComputerPlacements()
+        private frmPlayerForm playerForm;
+        public frmComputerPlacements(frmPlayerForm parent)
         {
             InitializeComponent();
             tmrEndTurn.Enabled = false;
+            playerForm = parent;
         }
         private void SetUpButton()
         {
@@ -245,7 +247,8 @@ namespace SplooshKaboom
             }
             if (endturnbool == true)
             {
-                this.Hide();
+                playerForm.Show();
+                this.Hide();    
             }
         }
 
