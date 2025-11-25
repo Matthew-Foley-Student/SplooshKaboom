@@ -19,3 +19,4 @@ C:\Users\Jarvis\Desktop\School Year 2 Algorithms\Week 3\SplooshKaboom\obj\Debug\
 C:\Users\Jarvis\Desktop\School Year 2 Algorithms\Week 3\SplooshKaboom\obj\Debug\net9.0-windows\SplooshKaboom.genruntimeconfig.cache
 C:\Users\Jarvis\Desktop\School Year 2 Algorithms\Week 3\SplooshKaboom\obj\Debug\net9.0-windows\ref\SplooshKaboom.dll
 C:\Users\Jarvis\Desktop\School Year 2 Algorithms\Week 3\SplooshKaboom\obj\Debug\net9.0-windows\SplooshKaboom.frmPlayerForm.resources
+C:\Users\Jarvis\Desktop\School Year 2 Algorithms\Week 3\SplooshKaboom\obj\Debug\net9.0-windows\SplooshKaboom.frmWinOrLost.resources

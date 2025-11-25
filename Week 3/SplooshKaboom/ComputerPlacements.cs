@@ -119,7 +119,19 @@ namespace SplooshKaboom
                         _buttons[i, j].Enabled = false;
                     }
                 }
-                tmrEndTurn.Start();
+                if (sub==3 && des==4 && cru == 3)
+                {
+                    frmPlayerForm.sharedata = "win";
+                    frmWinOrLost win = new frmWinOrLost("win");
+                    win.Visible = true;
+                    playerForm.Show();
+                    this.Close();
+                }
+                else
+                {
+                    tmrEndTurn.Start();
+                }
+
             }
         }//End of the mouse buttons setUp
 

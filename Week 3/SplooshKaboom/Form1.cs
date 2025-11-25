@@ -21,6 +21,7 @@ namespace SplooshKaboom
         string shipSub = "submarineul";
         string shipCruise = "cruiserul";
         string shipDestroy = "destroyerul";
+
         public frmPlayerForm()
         {
             InitializeComponent();
@@ -30,6 +31,7 @@ namespace SplooshKaboom
             lblSub.Visible = false;
             tmrComputerThinking.Stop();
             start = new frmComputerPlacements(this);
+
         }
 
         private void StartTheGame(object sender, EventArgs e)
@@ -274,7 +276,15 @@ namespace SplooshKaboom
 
         private void StartComputer(object sender, EventArgs e)
         {
-            if (boat >= 9)
+            if (sharedata == "win")
+            {
+                tmrComputerThinking.Stop();
+            }
+            else if(sharedata == "close")
+            {
+                this.Close();
+            }
+            else if (boat >= 9)
             {
                 tmrComputerThinking.Start();
             }
@@ -295,5 +305,6 @@ namespace SplooshKaboom
                 start.Show();
             }
         }
+        public static string sharedata;
     }
 }
