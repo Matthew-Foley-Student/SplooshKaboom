@@ -1,0 +1,122 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|c:\\users\\justi\\onedrive\\desktop\\school\\cst-201 - algrthms and data struct\\cst-201 workspace\\week 3\\splooshkaboom\\winorlose.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|solutionrelative:winorlose.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|c:\\users\\justi\\onedrive\\desktop\\school\\cst-201 - algrthms and data struct\\cst-201 workspace\\week 3\\splooshkaboom\\winorlose.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|solutionrelative:winorlose.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|c:\\users\\justi\\onedrive\\desktop\\school\\cst-201 - algrthms and data struct\\cst-201 workspace\\week 3\\splooshkaboom\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|c:\\users\\justi\\onedrive\\desktop\\school\\cst-201 - algrthms and data struct\\cst-201 workspace\\week 3\\splooshkaboom\\computerplacements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|solutionrelative:computerplacements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\computerplacements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|solutionrelative:computerplacements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "WinOrLose.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\WinOrLose.cs",
+              "RelativeDocumentMoniker": "WinOrLose.cs",
+              "ToolTip": "C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\WinOrLose.cs [Design]",
+              "RelativeToolTip": "WinOrLose.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-02T20:08:47.622Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\Form1.cs [Design]",
+              "RelativeToolTip": "Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-02T20:08:31.281Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ComputerPlacements.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\ComputerPlacements.cs",
+              "RelativeDocumentMoniker": "ComputerPlacements.cs",
+              "ToolTip": "C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\ComputerPlacements.cs [Design]",
+              "RelativeToolTip": "ComputerPlacements.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-02T06:05:31.543Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "WinOrLose.cs",
+              "DocumentMoniker": "C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\WinOrLose.cs",
+              "RelativeDocumentMoniker": "WinOrLose.cs",
+              "ToolTip": "C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\WinOrLose.cs",
+              "RelativeToolTip": "WinOrLose.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAABoAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-02T04:48:19.938Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AgIAAOUAAAAAAAAAAAAAAOwAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T06:13:25.069Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ComputerPlacements.cs",
+              "DocumentMoniker": "C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\ComputerPlacements.cs",
+              "RelativeDocumentMoniker": "ComputerPlacements.cs",
+              "ToolTip": "C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\ComputerPlacements.cs",
+              "RelativeToolTip": "ComputerPlacements.cs",
+              "ViewState": "AgIAAE8BAAAAAAAAAAAswHUBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T05:49:55.815Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

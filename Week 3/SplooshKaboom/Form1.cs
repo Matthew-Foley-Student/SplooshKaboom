@@ -16,8 +16,6 @@ namespace SplooshKaboom
         private Button[,] _buttons;
         frmComputerPlacements start;
         int boat = 0;
-        TimeSpan timeElapse = new TimeSpan();
-        bool endturnbool = false;
         string shipSub = "submarineul";
         string shipCruise = "cruiserul";
         string shipDestroy = "destroyerul";
@@ -29,21 +27,15 @@ namespace SplooshKaboom
             lblCruiser.Visible = false;
             lblDestroy.Visible = false;
             lblSub.Visible = false;
-            tmrComputerThinking.Stop();
             start = new frmComputerPlacements(this);
 
-        }
-
-        private void StartTheGame(object sender, EventArgs e)
-        {
-
-            start.Visible = true;
         }
 
         private void SetUpButton()
         {
             int buttonSize = pnlBoard.Width / _board.Size;
             pnlBoard.Height = pnlBoard.Width;
+
             for (int row = 0; row < _board.Size; row++)
             {
                 for (int col = 0; col < _board.Size; col++)
@@ -54,8 +46,9 @@ namespace SplooshKaboom
                     button.Width = buttonSize;
                     button.Height = buttonSize;
                     //Set Button Locations
-                    button.Left = row * buttonSize;
-                    button.Top = col * buttonSize;
+                    button.Left = col * buttonSize;
+                    button.Top = row * buttonSize;
+                    
                     _board.Grid[row, col].Revealed = false;
                     _board.Grid[row, col].Ship = false;
                     _board.Grid[row, col].ShipType = "";
@@ -146,24 +139,35 @@ namespace SplooshKaboom
                             _buttons[i, j].Text = "";
                             boat++;
                         }
+
                         if (_board.Grid[i, j].Ship == true && _board.Grid[i, j].ShipType == "D")
                         {
-                            _buttons[i, j].Text = "";
                             for (int h = 0; h < _board.Size; h++)
                             {
                                 for (int g = 0; g < _board.Size; g++)
                                 {
-                                    _buttons[row, col].Text = "";
                                     _buttons[h, g].Enabled = false;
-                                    start.Show();
-                                    this.Hide();
-                                    lblCruiser.Visible = true;
-                                    lblDestroy.Visible = true;
-                                    lblSub.Visible = true;
-                                    lblExplination.Visible = false;
                                 }
                             }
+
+                            // Show ship labels
+                            lblCruiser.Visible = true;
+                            lblDestroy.Visible = true;
+                            lblSub.Visible = true;
+                            lblExplination.Visible = false;
+
+                            // Transition to battle form
+                            start.Show();
+
+                            // Delay StartGameplay until after layout
+                            start.BeginInvoke(new Action(() =>
+                            {
+                                start.StartGamePlay(_board); // Pass player's board
+                            }));
+
+                            this.Hide();
                         }
+
                         else
                         {
                             button.Text = $"{row}, {col}";
@@ -186,7 +190,6 @@ namespace SplooshKaboom
                 }
                 if (boat == 0)
                 {
-
                     _boardLogic.MarkLegalLocation(_board, _board.Grid[row, col], shipSub);
                     for (int i = 0; i < _board.Size; i++)
                     {
@@ -196,11 +199,9 @@ namespace SplooshKaboom
                                 _buttons[i, j].Text = _board.Grid[i, j].ShipType;
                         }
                     }
-
                 }
                 else if (boat >= 3 && boat < 6)
                 {
-
                     _boardLogic.MarkLegalLocation(_board, _board.Grid[row, col], shipCruise);
                     for (int i = 0; i < _board.Size; i++)
                     {
@@ -210,11 +211,9 @@ namespace SplooshKaboom
                                 _buttons[i, j].Text = _board.Grid[i, j].ShipType;
                         }
                     }
-
                 }
                 else
                 {
-
                     _boardLogic.MarkLegalLocation(_board, _board.Grid[row, col], shipDestroy);
                     for (int i = 0; i < _board.Size; i++)
                     {
@@ -274,37 +273,6 @@ namespace SplooshKaboom
             catch (Exception) { }
         }
 
-        private void StartComputer(object sender, EventArgs e)
-        {
-            if (sharedata == "win")
-            {
-                tmrComputerThinking.Stop();
-            }
-            else if(sharedata == "close")
-            {
-                this.Close();
-            }
-            else if (boat >= 9)
-            {
-                tmrComputerThinking.Start();
-            }
-        }
-
-        private void tmrComputerThinking_Tick(object sender, EventArgs e)
-        {
-            int interval = tmrComputerThinking.Interval;
-            timeElapse = timeElapse.Add(TimeSpan.FromMilliseconds(interval));
-            if (timeElapse.Seconds % 5 == 0)
-            {
-                tmrComputerThinking.Stop();
-                endturnbool = true;
-            }
-            if (endturnbool == true)
-            {
-                this.Hide();
-                start.Show();
-            }
-        }
         public static string sharedata;
     }
 }

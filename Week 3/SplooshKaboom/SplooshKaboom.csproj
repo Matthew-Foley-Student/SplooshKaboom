@@ -18,6 +18,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="PNG_Assets\buoy.png" />
+    <None Remove="PNG_Assets\crosshair.png" />
+    <None Remove="PNG_Assets\explosion.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="PNG_Assets\buoy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PNG_Assets\crosshair.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PNG_Assets\explosion.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BattleShipLibrary\BattleShipLibrary.csproj" />
   </ItemGroup>
 

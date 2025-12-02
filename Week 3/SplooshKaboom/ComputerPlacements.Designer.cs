@@ -28,29 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            pnlBoard = new Panel();
+            pnlEnemyBoard = new Panel();
             lblSub = new Label();
             lblDestroy = new Label();
             lblCruis = new Label();
-            tmrEndTurn = new System.Windows.Forms.Timer(components);
+            pnlPlayerBoard = new Panel();
+            groupBox1 = new GroupBox();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
-            // pnlBoard
+            // pnlEnemyBoard
             // 
-            pnlBoard.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            pnlBoard.Location = new Point(203, 71);
-            pnlBoard.Name = "pnlBoard";
-            pnlBoard.Size = new Size(700, 700);
-            pnlBoard.TabIndex = 0;
+            pnlEnemyBoard.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pnlEnemyBoard.Location = new Point(63, 44);
+            pnlEnemyBoard.Name = "pnlEnemyBoard";
+            pnlEnemyBoard.Size = new Size(400, 400);
+            pnlEnemyBoard.TabIndex = 0;
             // 
             // lblSub
             // 
             lblSub.AutoSize = true;
-            lblSub.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSub.Location = new Point(12, 9);
+            lblSub.Font = new Font("Stencil", 15.75F);
+            lblSub.Location = new Point(6, 133);
             lblSub.Name = "lblSub";
-            lblSub.Size = new Size(129, 32);
+            lblSub.Size = new Size(130, 25);
             lblSub.TabIndex = 1;
             lblSub.Text = "Submarine";
             // 
@@ -58,10 +59,10 @@
             // 
             lblDestroy.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblDestroy.AutoSize = true;
-            lblDestroy.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblDestroy.Location = new Point(984, 9);
+            lblDestroy.Font = new Font("Stencil", 15.75F);
+            lblDestroy.Location = new Point(6, 253);
             lblDestroy.Name = "lblDestroy";
-            lblDestroy.Size = new Size(117, 32);
+            lblDestroy.Size = new Size(130, 25);
             lblDestroy.TabIndex = 2;
             lblDestroy.Text = "Destroyer";
             // 
@@ -69,42 +70,59 @@
             // 
             lblCruis.Anchor = AnchorStyles.Top;
             lblCruis.AutoSize = true;
-            lblCruis.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCruis.Location = new Point(492, 9);
+            lblCruis.Font = new Font("Stencil", 15.75F);
+            lblCruis.Location = new Point(6, 28);
             lblCruis.Name = "lblCruis";
-            lblCruis.Size = new Size(88, 32);
+            lblCruis.Size = new Size(100, 25);
             lblCruis.TabIndex = 3;
             lblCruis.Text = "Cruiser";
             // 
-            // tmrEndTurn
+            // pnlPlayerBoard
             // 
-            tmrEndTurn.Enabled = true;
-            tmrEndTurn.Interval = 1000;
-            tmrEndTurn.Tick += tmrEndTurn_Tick;
+            pnlPlayerBoard.Location = new Point(104, 471);
+            pnlPlayerBoard.Name = "pnlPlayerBoard";
+            pnlPlayerBoard.Size = new Size(300, 300);
+            pnlPlayerBoard.TabIndex = 4;
+            // 
+            // groupBox1
+            // 
+            groupBox1.BackColor = SystemColors.Control;
+            groupBox1.Controls.Add(lblCruis);
+            groupBox1.Controls.Add(lblSub);
+            groupBox1.Controls.Add(lblDestroy);
+            groupBox1.Font = new Font("Stencil", 9F);
+            groupBox1.Location = new Point(492, 62);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(149, 303);
+            groupBox1.TabIndex = 8;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Enemy Ships";
             // 
             // frmComputerPlacements
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1113, 783);
-            Controls.Add(lblCruis);
-            Controls.Add(lblDestroy);
-            Controls.Add(lblSub);
-            Controls.Add(pnlBoard);
+            BackColor = SystemColors.Control;
+            ClientSize = new Size(653, 783);
+            Controls.Add(groupBox1);
+            Controls.Add(pnlPlayerBoard);
+            Controls.Add(pnlEnemyBoard);
             Name = "frmComputerPlacements";
             Text = "ComputerPlacements";
-            Activated += CheckForButtons;
-            Load += StartProgram;
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Panel pnlBoard;
+        private Panel pnlEnemyBoard;
         private Label lblSub;
         private Label lblDestroy;
         private Label lblCruis;
-        private System.Windows.Forms.Timer tmrEndTurn;
+        private Panel pnlPlayerBoard;
+        private GroupBox groupBox1;
+        private Label lblShots;
+        private GroupBox lblDestroyerPlayer;
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BattleShipLibrary.Models;
+using BattleShipLibrary.Services.Buisness_Logic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,272 +9,366 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BattleShipLibrary.Models;
-using BattleShipLibrary.Services.Buisness_Logic;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace SplooshKaboom
 {
+    /// <summary>
+    /// Handles the computer's ship placements and gameplay loop
+    /// </summary>
+
     public partial class frmComputerPlacements : Form
     {
-        private BoardModel _board;
-        private BoardLogic _boardLogic;
-        private Button[,] _buttons;
-        int sub = 0;
-        int cru = 0;
-        int des = 0;
-        TimeSpan timeElapse = new TimeSpan();
-        bool endturnbool = false;
+        // Boards for player and enemy
+        private BoardModel playerBoard;
+        private BoardModel enemyBoard;
+
+        // Buttons for player and enemy boards
+        private Button[,] playerButtons;
+        private Button[,] enemyButtons;
+
+        // Random number generator for ship placement and targeting
+        private Random _rand = new Random();
+
+        // Queue for computer targeting logic
+        private Queue<Point> targetQueue = new Queue<Point>();
+
+        // Track hits for each enemy ship type
+        private int hitsSubEnemy = 0;
+        private int hitsCruEnemy = 0;
+        private int hitsDesEnemy = 0;
+
+        // Reference to the ship placing form.
         private frmPlayerForm playerForm;
+
+        // Preloaded images for hits, misses, and aiming
+        private static Image hitIMG = Image.FromFile(Path.Combine(Application.StartupPath, "PNG_Assets", "explosion.png"));
+        private static Image missIMG = Image.FromFile(Path.Combine(Application.StartupPath, "PNG_Assets", "buoy.png"));
+        private static Image aimIMG = Image.FromFile(Path.Combine(Application.StartupPath, "PNG_Assets", "crosshair.png"));
+
+        /// <summary>
+        /// initializes the form with a reference to the parent ship placing form
+        /// </summary>
+        /// <param name="parent"></param>
         public frmComputerPlacements(frmPlayerForm parent)
         {
             InitializeComponent();
-            tmrEndTurn.Enabled = false;
             playerForm = parent;
         }
-        private void SetUpButton()
+
+        /// <summary>
+        /// Starts the gameplay by setting up boards and placing enemy ships
+        /// </summary>
+        /// <param name="placedPlayerBoard"></param>
+        public void StartGamePlay(BoardModel placedPlayerBoard)
         {
-            int buttonSize = pnlBoard.Width / _board.Size;
-            pnlBoard.Height = pnlBoard.Width;
-            for (int row = 0; row < _board.Size; row++)
-            {
-                for (int col = 0; col < _board.Size; col++)
-                {
-                    _buttons[row, col] = new Button();
-                    Button button = _buttons[row, col];
-                    //set the size's
-                    button.Width = buttonSize;
-                    button.Height = buttonSize;
-                    //Set Button Locations
-                    button.Left = row * buttonSize;
-                    button.Top = col * buttonSize;
-                    _board.Grid[row, col].Revealed = false;
-                    _board.Grid[row, col].Ship = false;
-                    _board.Grid[row, col].ShipType = "";
-                    //Set the Click Capeabilities for the buttons
-                    button.MouseDown += btnMouseClick;
-                    //store button's capeabilites
-                    button.Tag = new Point(row, col);
-                    button.Text = $"{row}, {col}";
-                    pnlBoard.Controls.Add(_buttons[row, col]);
+            playerBoard = placedPlayerBoard;
+            enemyBoard = new BoardModel(playerBoard.Size);
 
-                }
-            }
-        }//end of the panel setups
+            // Initialize button arrays
+            playerButtons = new Button[playerBoard.Size, playerBoard.Size];
+            enemyButtons = new Button[enemyBoard.Size, enemyBoard.Size];
 
-        private void btnMouseClick(object sender, MouseEventArgs e)
+            // Create both boards
+            SetupBoard(pnlPlayerBoard, playerBoard, playerButtons, false);
+            SetupBoard(pnlEnemyBoard, enemyBoard, enemyButtons, true);
+
+            // Place enemy ships and paint player ships
+            PlaceEnemyShips();
+            PaintPlayerShips();
+        }
+
+        /// <summary>
+        /// Creates a board of buttons within the specified panel and attaches event handlers
+        /// </summary>
+        /// <param name="panel"></param>
+        /// <param name="board"></param>
+        /// <param name="buttons"></param>
+        /// <param name="isEnemy"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        private void SetupBoard(Panel panel, BoardModel board, Button[,] buttons, bool isEnemy)
         {
-            endturnbool = false;
-            Button button = (Button)sender;
-            Point point = (Point)button.Tag;
-            int row = point.X;
-            int col = point.Y;
-            MessageBox.Show($"You Clicked On Row {row} And Column {col}");
-            if (e.Button == MouseButtons.Left || e.Button == MouseButtons.Right)
-            {
-                if (_board.Grid[row, col].Revealed == false && _board.Grid[row, col].Ship == false)
-                {
-                    _board.Grid[row, col].Revealed = true;
-                    _buttons[row, col].BackColor = Color.LightBlue;
-                    _buttons[row, col].Text = "SPLOOSH";
-                }
-                if (_board.Grid[row, col].Ship == true && _board.Grid[row, col].Revealed == false)
-                {
-                    _board.Grid[row, col].Revealed = true;
-                    if (_board.Grid[row, col].ShipType == "S" || _board.Grid[row, col].ShipType == "Sdl" || _board.Grid[row, col].ShipType == "Sdr" || _board.Grid[row, col].ShipType == "Sul" || _board.Grid[row, col].ShipType == "Sur")
-                    {
-                        sub++;
-                        _buttons[row, col].BackColor = Color.Red;
-                        _buttons[row, col].Text = "KABOOM";
-                        if (sub == 3)
-                        {
-                            lblSub.Font = new Font(lblSub.Font, FontStyle.Strikeout | FontStyle.Bold);
-                            lblSub.ForeColor = Color.Red;
-                        }
-                    }
-                    if (_board.Grid[row, col].ShipType == "D" || _board.Grid[row, col].ShipType == "Dul" || _board.Grid[row, col].ShipType == "Dur" || _board.Grid[row, col].ShipType == "Ddl" || _board.Grid[row, col].ShipType == "Ddr")
-                    {
-                        des++;
-                        _buttons[row, col].BackColor = Color.Red;
-                        _buttons[row, col].Text = "KABOOM";
-                        if (des == 4)
-                        {
-                            lblDestroy.Font = new Font(lblDestroy.Font, FontStyle.Strikeout | FontStyle.Bold);
-                            lblDestroy.ForeColor = Color.Red;
-                        }
-                    }
-                    if (_board.Grid[row, col].ShipType == "C" || _board.Grid[row, col].ShipType == "Cur" || _board.Grid[row, col].ShipType == "Cul" || _board.Grid[row, col].ShipType == "Cdr" || _board.Grid[row, col].ShipType == "Cdl")
-                    {
-                        cru++;
-                        _buttons[row, col].BackColor = Color.Red;
-                        _buttons[row, col].Text = "KABOOM";
-                        if (cru == 3)
-                        {
-                            lblCruis.Font = new Font(lblCruis.Font, FontStyle.Strikeout | FontStyle.Bold);
-                            lblCruis.ForeColor = Color.Red;
-                        }
-                    }
-                }
-                for (int i = 0; i < _board.Size; i++)
-                {
-                    for (int j = 0; j < _board.Size; j++)
-                    {
-                        _buttons[i, j].Enabled = false;
-                    }
-                }
-                if (sub==3 && des==4 && cru == 3)
-                {
-                    frmPlayerForm.sharedata = "win";
-                    frmWinOrLost win = new frmWinOrLost("win");
-                    win.Visible = true;
-                    playerForm.Show();
-                    this.Close();
-                }
-                else
-                {
-                    tmrEndTurn.Start();
-                }
 
-            }
-        }//End of the mouse buttons setUp
+            if (panel == null) throw new ArgumentNullException(nameof(panel));
+            if (board == null) throw new ArgumentNullException(nameof(board));
+            if (buttons == null) throw new ArgumentNullException(nameof(buttons));
 
-        private void StartProgram(object sender, EventArgs e)
-        {
-            int size = 0;
+            // Clear old controls to avoid memory leaks
+            foreach (Control ctl in panel.Controls.Cast<Control>().ToArray())
+                ctl.Dispose();
+            panel.Controls.Clear();
+
+            // Calculate button size (minimum 18px)
+            int buttonSize = Math.Max(18, panel.Width / board.Size);
+            panel.Height = panel.Width; // keep square
+
+            panel.SuspendLayout();
             try
             {
-                size = 10;
-
-                _board = new BoardModel(size);
-                _boardLogic = new BoardLogic();
-                _buttons = new Button[size, size];
-                SetUpButton();
-
-            }
-            catch (Exception) { }
-            bool sub = false, cruis = false, dest = false;
-            while (dest == false)
-            {
-                Random rand = new Random();
-                int row = rand.Next(0, _board.Size);
-                int col = rand.Next(0, _board.Size);
-                int boat = rand.Next(1, 4);
-                if (boat == 1)
+                for (int row = 0; row < board.Size; row++)
                 {
-                    _boardLogic.MarkLegalLocation(_board, _board.Grid[row, col], "destroyerul");
-                }
-                if (boat == 2)
-                {
-                    _boardLogic.MarkLegalLocation(_board, _board.Grid[row, col], "destroyerur");
-                }
-                if (boat == 3)
-                {
-                    _boardLogic.MarkLegalLocation(_board, _board.Grid[row, col], "destroyerdl");
-                }
-                if (boat == 4)
-                {
-                    _boardLogic.MarkLegalLocation(_board, _board.Grid[row, col], "destroyerdr");
-                }
-                if (_board.Grid[row, col].ShipType == "D")
-                {
-                    dest = true;
-                }
-            }//End of placement of the destroyer Boat
-
-            while (cruis == false)
-            {
-                Random rand = new Random();
-                int row = rand.Next(0, _board.Size);
-                int col = rand.Next(0, _board.Size);
-                int boat = rand.Next(1, 4);
-                if (boat == 1)
-                {
-                    _boardLogic.MarkLegalLocation(_board, _board.Grid[row, col], "cruiserul");
-                }
-                if (boat == 2)
-                {
-                    _boardLogic.MarkLegalLocation(_board, _board.Grid[row, col], "cruiserur");
-                }
-                if (boat == 3)
-                {
-                    _boardLogic.MarkLegalLocation(_board, _board.Grid[row, col], "cruiserdl");
-                }
-                if (boat == 4)
-                {
-                    _boardLogic.MarkLegalLocation(_board, _board.Grid[row, col], "cruiserdr");
-                }
-                if (_board.Grid[row, col].ShipType == "C")
-                {
-                    cruis = true;
-                }
-            }//End of the placements of the Cruiser
-
-            while (sub == false)
-            {
-                Random rand = new Random();
-                int row = rand.Next(0, _board.Size);
-                int col = rand.Next(0, _board.Size);
-                int boat = rand.Next(1, 4);
-                if (boat == 1)
-                {
-                    _boardLogic.MarkLegalLocation(_board, _board.Grid[row, col], "submarineul");
-                }
-                if (boat == 1)
-                {
-                    _boardLogic.MarkLegalLocation(_board, _board.Grid[row, col], "submarineur");
-                }
-                if (boat == 1)
-                {
-                    _boardLogic.MarkLegalLocation(_board, _board.Grid[row, col], "submarinedl");
-                }
-                if (boat == 1)
-                {
-                    _boardLogic.MarkLegalLocation(_board, _board.Grid[row, col], "submarinedr");
-                }
-                if (_board.Grid[row, col].ShipType == "Sdl" || _board.Grid[row, col].ShipType == "Sdr" || _board.Grid[row, col].ShipType == "Sul" || _board.Grid[row, col].ShipType == "Sur")
-                {
-                    sub = true;
-                }
-            }//End of the Submarine Placements
-            for (int row = 0; row < _board.Size; row++)
-            {
-                for (int col = 0; col < _board.Size; col++)
-                {
-                    if (_board.Grid[row, col].ShipType != "")
+                    for (int col = 0; col < board.Size; col++)
                     {
-                        _board.Grid[row, col].Ship = true;
-                    }
-                    else
-                    {
+                        var btn = new Button
+                        {
+                            Width = buttonSize,
+                            Height = buttonSize,
+                            Left = col * buttonSize,
+                            Top = row * buttonSize,
+                            Tag = new Point(row, col),
+                            BackColor = Color.LightBlue
+                        };
+
+                        // Hover effect that shows a crosshair when hovering over buttons
+                        btn.MouseEnter += (s, e) =>
+                        {
+                            if (btn.BackgroundImage == null)
+                            {
+                                btn.BackgroundImage = aimIMG;
+                                btn.BackgroundImageLayout = ImageLayout.Zoom;
+                            }
+                        };
+                        btn.MouseLeave += (s, e) =>
+                        {
+                            if (btn.BackgroundImage == aimIMG)
+                                btn.BackgroundImage = null;
+                        };
+
+                        // Attach click event for enemy board buttons
+                        if (isEnemy)
+                            btn.Click += EnemyBoard_Click;
+
+                        panel.Controls.Add(btn);
+                        buttons[row, col] = btn;
                     }
                 }
             }
-        }//Starting the program
-
-        private void tmrEndTurn_Tick(object sender, EventArgs e)
-        {
-            int interval = tmrEndTurn.Interval;
-            timeElapse = timeElapse.Add(TimeSpan.FromMilliseconds(interval));
-            if (timeElapse.Seconds % 2 == 0)
+            finally
             {
-                tmrEndTurn.Stop();
-                endturnbool = true;
-            }
-            if (endturnbool == true)
-            {
-                playerForm.Show();
-                this.Hide();    
+                panel.ResumeLayout(false);
             }
         }
 
-        private void CheckForButtons(object sender, EventArgs e)
+        /// <summary>
+        ///  Randomly places enemy ships on the enemy board
+        /// </summary>
+        private void PlaceEnemyShips()
         {
-            for (int i = 0; i < _board.Size; i++)
+            BoardLogic logic = new BoardLogic();
+
+            PlaceBoat(new[] { "destroyerul", "destroyerur", "destroyerdl", "destroyerdr" },
+                      cell => cell.ShipType.StartsWith("D"),
+                      (r, c, o) => logic.MarkLegalLocation(enemyBoard, enemyBoard.Grid[r, c], o));
+
+            PlaceBoat(new[] { "cruiserul", "cruiserur", "cruiserdl", "cruiserdr" },
+                      cell => cell.ShipType.StartsWith("C"),
+                      (r, c, o) => logic.MarkLegalLocation(enemyBoard, enemyBoard.Grid[r, c], o));
+
+            PlaceBoat(new[] { "submarineul", "submarineur", "submarinedl", "submarinedr" },
+                      cell => cell.ShipType.StartsWith("S"),
+                      (r, c, o) => logic.MarkLegalLocation(enemyBoard, enemyBoard.Grid[r, c], o));
+
+            foreach (var cell in enemyBoard.Grid)
+                if (!string.IsNullOrEmpty(cell.ShipType)) cell.Ship = true;
+        }
+
+        /// <summary>
+        /// Attempts to place a boat until a valid position is found
+        /// </summary>
+        /// <param name="orientations"></param>
+        /// <param name="isValid"></param>
+        /// <param name="placeAction"></param>
+        private void PlaceBoat(string[] orientations, Func<CellModel, bool> isValid, Action<int, int, string> placeAction)
+        {
+            bool placed = false;
+            while (!placed)
             {
-                for (int j = 0; j < _board.Size; j++)
-                {
-                    _buttons[i, j].Enabled = true;
-                }
+                int r = _rand.Next(enemyBoard.Size);
+                int c = _rand.Next(enemyBoard.Size);
+                string o = orientations[_rand.Next(orientations.Length)];
+                placeAction(r, c, o);
+                if (isValid(enemyBoard.Grid[r, c])) placed = true;
             }
+        }
+
+        /// <summary>
+        /// Paints the player's ships on their board
+        /// </summary>
+        private void PaintPlayerShips()
+        {
+            for (int r = 0; r < playerBoard.Size; r++)
+                for (int c = 0; c < playerBoard.Size; c++)
+                    if (playerBoard.Grid[r, c].Ship)
+                        playerButtons[r, c].BackColor = Color.Gray;
+        }
+
+        /// <summary>
+        /// Handles player clicks on the enemy board
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EnemyBoard_Click(object sender, EventArgs e)
+        {
+            if (IsGameOver()) return;
+
+            Button btn = (Button)sender;
+            Point p = (Point)btn.Tag;
+            var cell = enemyBoard.Grid[p.X, p.Y];
+
+            if (cell.Revealed) return;
+
+            cell.Revealed = true;
+
+            // Hit
+            if (cell.Ship)
+            {
+                btn.BackColor = Color.LightBlue;
+                btn.BackgroundImage = hitIMG;
+                btn.BackgroundImageLayout = ImageLayout.Zoom;
+                btn.Text = "";
+
+                if (cell.ShipType.StartsWith("S")) hitsSubEnemy++;
+                else if (cell.ShipType.StartsWith("C")) hitsCruEnemy++;
+                else if (cell.ShipType.StartsWith("D")) hitsDesEnemy++;
+
+                UpdateShipLabels();
+            }
+            //Miss
+            else
+            {
+                btn.BackColor = Color.LightBlue;
+                btn.BackgroundImage = missIMG;
+                btn.BackgroundImageLayout = ImageLayout.Zoom;
+                btn.Text = "";
+            }
+
+            if (IsGameOver()) 
+            { 
+                ShowWinOrLose();
+                return;
+            }
+
+            //Computer's turn
+            ComputerTurn();
+        }
+
+        /// <summary>
+        /// Executes the computer's turn by selecting a target and updating the player's board
+        /// </summary>
+        private void ComputerTurn()
+        {
+            if (IsGameOver())
+                return;
+
+            Point target = targetQueue.Count > 0 ? targetQueue.Dequeue() : PickRandomUnrevealed(playerBoard);
+            var cell = playerBoard.Grid[target.X, target.Y];
+
+            if (cell.Revealed) 
+                return;
+
+            cell.Revealed = true;
+
+            if (cell.Ship)
+            {
+                playerButtons[target.X, target.Y].BackColor = Color.Gray;
+                playerButtons[target.X, target.Y].BackgroundImage = hitIMG;
+                playerButtons[target.X, target.Y].BackgroundImageLayout = ImageLayout.Zoom;
+                playerButtons[target.X, target.Y].Text = "";
+
+                // If hit, enqueue neighboring cells for next turn
+                EnqueueNeighbors(target.X, target.Y, playerBoard);
+            }
+            else
+            {
+                // Miss
+                playerButtons[target.X, target.Y].BackColor = Color.LightBlue;
+                playerButtons[target.X, target.Y].BackgroundImage = missIMG;
+                playerButtons[target.X, target.Y].BackgroundImageLayout = ImageLayout.Zoom;
+                playerButtons[target.X, target.Y].Text = "";
+            }
+
+            if (IsGameOver()) ShowWinOrLose();
+        }
+
+        /// <summary>
+        /// Picks a random unrevealed cell on the board for AI targeting
+        /// </summary>
+        /// <param name="board"></param>
+        /// <returns></returns>
+        private Point PickRandomUnrevealed(BoardModel board)
+        {
+            for (int i = 0; i < 500; i++)
+            {
+                int r = _rand.Next(board.Size);
+                int c = _rand.Next(board.Size);
+                if (!board.Grid[r, c].Revealed) return new Point(r, c);
+            }
+            return new Point(0, 0);
+        }
+
+        /// <summary>
+        /// Adds neighboring cells to the target queue for focused attacks.
+        /// </summary>
+        /// <param name="r"></param>
+        /// <param name="c"></param>
+        /// <param name="board"></param>
+        private void EnqueueNeighbors(int r, int c, BoardModel board)
+        {
+            TryQueue(r - 1, c, board);
+            TryQueue(r + 1, c, board);
+            TryQueue(r, c - 1, board);
+            TryQueue(r, c + 1, board);
+        }
+
+        /// <summary>
+        /// Attempts to enqueue a cell if it's valid and unrevealed
+        /// </summary>
+        /// <param name="r"></param>
+        /// <param name="c"></param>
+        /// <param name="board"></param>
+        private void TryQueue(int r, int c, BoardModel board)
+        {
+            if (r >= 0 && c >= 0 && r < board.Size && c < board.Size && !board.Grid[r, c].Revealed)
+                targetQueue.Enqueue(new Point(r, c));
+        }
+
+        /// <summary>
+        /// Updates the enemy ship labels to reflect sunk ships
+        /// </summary>
+        private void UpdateShipLabels()
+        {
+            if (hitsSubEnemy >= 3) { lblSub.Font = new Font(lblSub.Font, FontStyle.Strikeout); lblSub.ForeColor = Color.Red; }
+            if (hitsCruEnemy >= 3) { lblCruis.Font = new Font(lblCruis.Font, FontStyle.Strikeout); lblCruis.ForeColor = Color.Red; }
+            if (hitsDesEnemy >= 4) { lblDestroy.Font = new Font(lblDestroy.Font, FontStyle.Strikeout); lblDestroy.ForeColor = Color.Red; }
+
+        }
+
+        /// <summary>
+        /// Checks if the game is over by verifying if all ships are sunk
+        /// </summary>
+        /// <returns></returns>
+        private bool IsGameOver()
+        {
+            bool playerLost = playerBoard.Grid.Cast<CellModel>().All(c => !c.Ship || c.Revealed);
+            bool enemyLost = enemyBoard.Grid.Cast<CellModel>().All(c => !c.Ship || c.Revealed);
+            return playerLost || enemyLost;
+        }
+
+        /// <summary>
+        /// Displays the win or lose message and disables further interaction
+        /// </summary>
+        private void ShowWinOrLose()
+        {
+            string condition = enemyBoard.Grid.Cast<CellModel>().All(c => !c.Ship || c.Revealed) ? "win" : "lose";
+
+            frmWinOrLost resultForm = new frmWinOrLost(condition);
+            resultForm.ShowDialog();
+            this.Close();
+
+            // Disable enemy buttons after game ends
+            for (int r = 0; r < enemyBoard.Size; r++)
+                for (int c = 0; c < enemyBoard.Size; c++)
+                    enemyButtons[r, c].Enabled = false;
         }
     }
 }
