@@ -12,6 +12,8 @@ namespace SplooshKaboom
 {
     public partial class frmWinOrLost : Form
     {
+        frmPlayerForm restart = new frmPlayerForm();
+
         public frmWinOrLost(string condition)
         {
             InitializeComponent();
@@ -34,6 +36,13 @@ namespace SplooshKaboom
         private void endit(object sender, FormClosedEventArgs e)
         {
             frmPlayerForm.sharedata = "close";
+        }
+
+        private void BtnNewGame_ClickEH(object sender, EventArgs e)
+        {
+            restart.Show();
+
+            this.Close();
         }
     }
 }

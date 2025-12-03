@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jarvis\\Desktop\\School Year 2 Algorithms\\Week 3\\BattleShipLibrary\\BattleShipLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\Jarvis\\Desktop\\School Year 2 Algorithms\\Week 3\\SplooshKaboom-branch1\\SplooshKaboom-branch1\\Week 3\\BattleShipLibrary\\BattleShipLibrary.csproj",
       "projectName": "BattleShipLibrary",
-      "projectPath": "C:\\Users\\Jarvis\\Desktop\\School Year 2 Algorithms\\Week 3\\BattleShipLibrary\\BattleShipLibrary.csproj",
+      "projectPath": "C:\\Users\\Jarvis\\Desktop\\School Year 2 Algorithms\\Week 3\\SplooshKaboom-branch1\\SplooshKaboom-branch1\\Week 3\\BattleShipLibrary\\BattleShipLibrary.csproj",
       "packagesPath": "C:\\Users\\Jarvis\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jarvis\\Desktop\\School Year 2 Algorithms\\Week 3\\BattleShipLibrary\\obj\\",
+      "outputPath": "C:\\Users\\Jarvis\\Desktop\\School Year 2 Algorithms\\Week 3\\SplooshKaboom-branch1\\SplooshKaboom-branch1\\Week 3\\BattleShipLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -16,18 +16,6 @@ namespace BattleShipLibrary.Services.Buisness_Logic
 {
     public class BoardLogic
     {
-        public BoardModel CheckForShip(BoardModel board, CellModel currentCell, bool bombRefrence)
-        {
-            if (board.Grid[currentCell.Row, currentCell.Collumn].Ship == true)
-            {
-
-            }
-            else
-            {
-                board.Grid[currentCell.Row, currentCell.Collumn].Revealed = true;
-            }
-            return board;
-        }
         private bool IsOnBoard(BoardModel board, int row, int col)
         {
             int size = board.Size;

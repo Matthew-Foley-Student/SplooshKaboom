@@ -28,13 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             pnlBoard = new Panel();
             lblSub = new Label();
             lblDestroy = new Label();
             lblCruiser = new Label();
             lblExplination = new Label();
-            tmrComputerThinking = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
             // pnlBoard
@@ -88,12 +86,6 @@
             lblExplination.TabIndex = 5;
             lblExplination.Text = "Left click a square to attempt to place a ship\r\nMiddle click to change its rotation\r\nRight click to display the ship but not place it";
             // 
-            // tmrComputerThinking
-            // 
-            tmrComputerThinking.Enabled = true;
-            tmrComputerThinking.Interval = 1000;
-            tmrComputerThinking.Tick += tmrComputerThinking_Tick;
-            // 
             // frmPlayerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -106,7 +98,6 @@
             Controls.Add(pnlBoard);
             Name = "frmPlayerForm";
             Text = "Form1";
-            Activated += StartComputer;
             Load += StartTheProgram;
             ResumeLayout(false);
             PerformLayout();
@@ -118,6 +109,5 @@
         private Label lblDestroy;
         private Label lblCruiser;
         private Label lblExplination;
-        private System.Windows.Forms.Timer tmrComputerThinking;
     }
 }

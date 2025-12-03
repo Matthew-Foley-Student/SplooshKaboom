@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             lblWinOrLost = new Label();
+            btnNewGame = new Button();
             SuspendLayout();
             // 
             // lblWinOrLost
@@ -36,17 +37,28 @@
             lblWinOrLost.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblWinOrLost.AutoSize = true;
             lblWinOrLost.Font = new Font("Segoe UI", 72F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblWinOrLost.Location = new Point(130, 117);
+            lblWinOrLost.Location = new Point(73, 28);
             lblWinOrLost.Name = "lblWinOrLost";
             lblWinOrLost.Size = new Size(570, 128);
             lblWinOrLost.TabIndex = 0;
             lblWinOrLost.Text = "Win Or Lose";
             // 
+            // btnNewGame
+            // 
+            btnNewGame.Location = new Point(278, 221);
+            btnNewGame.Name = "btnNewGame";
+            btnNewGame.Size = new Size(180, 50);
+            btnNewGame.TabIndex = 1;
+            btnNewGame.Text = "New Game";
+            btnNewGame.UseVisualStyleBackColor = true;
+            btnNewGame.Click += BtnNewGame_ClickEH;
+            // 
             // frmWinOrLost
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(720, 312);
+            Controls.Add(btnNewGame);
             Controls.Add(lblWinOrLost);
             Name = "frmWinOrLost";
             Text = "WinOrLose";
@@ -59,5 +71,6 @@
         #endregion
 
         private Label lblWinOrLost;
+        private Button btnNewGame;
     }
 }
