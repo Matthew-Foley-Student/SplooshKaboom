@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\computerplacements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|solutionrelative:computerplacements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|c:\\users\\justi\\onedrive\\desktop\\school\\cst-201 - algrthms and data struct\\cst-201 workspace\\week 3\\splooshkaboom\\computerplacements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|solutionrelative:computerplacements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|c:\\users\\justi\\onedrive\\desktop\\school\\cst-201 - algrthms and data struct\\cst-201 workspace\\week 3\\splooshkaboom\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|c:\\users\\justi\\onedrive\\desktop\\school\\cst-201 - algrthms and data struct\\cst-201 workspace\\week 3\\splooshkaboom\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|c:\\users\\justi\\onedrive\\desktop\\school\\cst-201 - algrthms and data struct\\cst-201 workspace\\week 3\\splooshkaboom\\computerplacements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F50D05F5-CEE7-4289-9F0B-57DFFD8E23A2}|SplooshKaboom.csproj|solutionrelative:computerplacements.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{25EBD7F3-51E3-4618-9CC6-9B8A73734686}|..\\BattleShipLibrary\\BattleShipLibrary.csproj|c:\\users\\justi\\onedrive\\desktop\\school\\cst-201 - algrthms and data struct\\cst-201 workspace\\week 3\\battleshiplibrary\\services\\buisness logic\\boardlogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -25,7 +29,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -37,32 +41,44 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "ComputerPlacements.cs",
+              "DocumentMoniker": "C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\ComputerPlacements.cs",
+              "RelativeDocumentMoniker": "ComputerPlacements.cs",
+              "ToolTip": "C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\ComputerPlacements.cs",
+              "RelativeToolTip": "ComputerPlacements.cs",
+              "ViewState": "AgIAAN0AAAAAAAAAAAAIwB8BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-05T03:47:22.606Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AgIAAIYAAAAAAAAAAAAAAKYAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAiwBMAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-04T05:26:38.309Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\Form1.cs [Design]",
               "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-04T05:35:39.548Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-12-04T05:35:39.548Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "BoardLogic.cs",
               "DocumentMoniker": "C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\BattleShipLibrary\\Services\\Buisness Logic\\BoardLogic.cs",
               "RelativeDocumentMoniker": "..\\BattleShipLibrary\\Services\\Buisness Logic\\BoardLogic.cs",
@@ -70,12 +86,11 @@
               "RelativeToolTip": "..\\BattleShipLibrary\\Services\\Buisness Logic\\BoardLogic.cs",
               "ViewState": "AgIAAJsBAAAAAAAAAAAAALoBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-04T04:45:05.954Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-04T04:45:05.954Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "ComputerPlacements.cs [Design]",
               "DocumentMoniker": "C:\\Users\\justi\\OneDrive\\Desktop\\School\\CST-201 - Algrthms and Data Struct\\cst-201 workspace\\Week 3\\SplooshKaboom\\ComputerPlacements.cs",
               "RelativeDocumentMoniker": "ComputerPlacements.cs",

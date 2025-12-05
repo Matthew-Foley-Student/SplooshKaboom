@@ -17,7 +17,7 @@ namespace SplooshKaboom
         private int placementStage = 0;
         private int? lastPreviewRow = null;
         private int? lastPreviewCol = null;
-
+       
         frmComputerPlacements start;
         int boat = 0;
         string shipSub = "submarineul";

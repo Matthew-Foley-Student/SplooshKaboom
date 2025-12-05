@@ -33,6 +33,9 @@ namespace SplooshKaboom
         private Button[,] playerButtons;
         private Button[,] enemyButtons;
 
+        // Flag to indicate if the computer is currently taking its turn
+        private bool isComputerActing = false;
+
         // Random number generator for ship placement and targeting
         private Random _rand = new Random();
 
@@ -208,6 +211,18 @@ namespace SplooshKaboom
                         playerButtons[r, c].BackColor = Color.Gray;
         }
 
+
+        private void ToggleEnemyButtons(bool enabled)
+        {
+            for (int r = 0; r < enemyBoard.Size; r++)
+            {
+                for (int c = 0; c < enemyBoard.Size; c++)
+                {
+                    enemyButtons[r, c].Enabled = enabled;
+                }
+            }
+        }
+
         /// <summary>
         /// Handles player clicks on the enemy board
         /// </summary>
@@ -215,7 +230,9 @@ namespace SplooshKaboom
         /// <param name="e"></param>
         private void EnemyBoard_Click(object sender, EventArgs e)
         {
+
             if (IsGameOver()) return;
+            if (isComputerActing) return; // ignore clicks while computer is acting
 
             Button btn = (Button)sender;
             Point p = (Point)btn.Tag;
@@ -225,76 +242,112 @@ namespace SplooshKaboom
 
             cell.Revealed = true;
 
-            // Hit
-            if (cell.Ship)
+            bool playerHit = cell.Ship;
+
+            if (playerHit)
             {
+                // --- Hit visuals ---
                 btn.BackColor = Color.LightBlue;
                 btn.BackgroundImage = hitIMG;
                 btn.BackgroundImageLayout = ImageLayout.Zoom;
                 btn.Text = "";
 
+                // Track sinks (unchanged)
                 if (cell.ShipType.StartsWith("S")) hitsSubEnemy++;
                 else if (cell.ShipType.StartsWith("C")) hitsCruEnemy++;
                 else if (cell.ShipType.StartsWith("D")) hitsDesEnemy++;
-
                 UpdateShipLabels();
+
+                if (IsGameOver())
+                {
+                    ShowWinOrLose();
+                    return;
+                }
+
+                // PLAYER HIT: player gets to go again -> **do NOT** call computer turn.
+                // Just return and let the user click another enemy cell.
+                return;
             }
-            //Miss
             else
             {
+                // --- Miss visuals ---
                 btn.BackColor = Color.LightBlue;
                 btn.BackgroundImage = missIMG;
                 btn.BackgroundImageLayout = ImageLayout.Zoom;
                 btn.Text = "";
+
+                if (IsGameOver())
+                {
+                    ShowWinOrLose();
+                    return;
+                }
+
+                // PLAYER MISS: computer plays (and keeps going on subsequent hits)
+                BeginComputerStreak();
             }
 
-            if (IsGameOver()) 
-            { 
-                ShowWinOrLose();
-                return;
-            }
-
-            //Computer's turn
-            ComputerTurn();
         }
 
         /// <summary>
         /// Executes the computer's turn by selecting a target and updating the player's board
         /// </summary>
-        private void ComputerTurn()
+        private bool ComputerTurn()
         {
+
             if (IsGameOver())
-                return;
+                return false;
 
             Point target = targetQueue.Count > 0 ? targetQueue.Dequeue() : PickRandomUnrevealed(playerBoard);
             var cell = playerBoard.Grid[target.X, target.Y];
 
-            if (cell.Revealed) 
-                return;
+            if (cell.Revealed)
+                return false;
 
             cell.Revealed = true;
 
             if (cell.Ship)
             {
-                playerButtons[target.X, target.Y].BackColor = Color.Gray;
+                // --- Hit visuals ---
+                playerButtons[target.X, target.Y].BackColor = Color.Gray; 
                 playerButtons[target.X, target.Y].BackgroundImage = hitIMG;
                 playerButtons[target.X, target.Y].BackgroundImageLayout = ImageLayout.Zoom;
                 playerButtons[target.X, target.Y].Text = "";
 
-                // If hit, enqueue neighboring cells for next turn
+                // Focus next shots near the hit
                 EnqueueNeighbors(target.X, target.Y, playerBoard);
+                return true; // continue streak
             }
             else
             {
-                // Miss
+                // --- Miss visuals ---
                 playerButtons[target.X, target.Y].BackColor = Color.LightBlue;
                 playerButtons[target.X, target.Y].BackgroundImage = missIMG;
                 playerButtons[target.X, target.Y].BackgroundImageLayout = ImageLayout.Zoom;
                 playerButtons[target.X, target.Y].Text = "";
+
+                return false; // end streak
+            }
+        }
+
+
+        private void BeginComputerStreak()
+        {
+            isComputerActing = true;
+            ToggleEnemyButtons(false);
+
+            while (!IsGameOver())
+            {
+                bool hit = ComputerTurn();
+                if (!hit) break; // miss -> end of computer streak
             }
 
-            if (IsGameOver()) ShowWinOrLose();
+            ToggleEnemyButtons(true);
+            isComputerActing = false;
+
+            if (IsGameOver())
+                ShowWinOrLose();
         }
+
 
         /// <summary>
         /// Picks a random unrevealed cell on the board for AI targeting
