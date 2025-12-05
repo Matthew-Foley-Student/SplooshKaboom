@@ -211,7 +211,10 @@ namespace SplooshKaboom
                         playerButtons[r, c].BackColor = Color.Gray;
         }
 
-
+        /// <summary>
+        /// Enables or disables all enemy board buttons
+        /// </summary>
+        /// <param name="enabled"></param>
         private void ToggleEnemyButtons(bool enabled)
         {
             for (int r = 0; r < enemyBoard.Size; r++)
@@ -329,7 +332,9 @@ namespace SplooshKaboom
             }
         }
 
-
+        /// <summary>
+        ///  Begins the computer's turn streak, allowing it to continue attacking on hits
+        /// </summary>
         private void BeginComputerStreak()
         {
             isComputerActing = true;
@@ -377,6 +382,10 @@ namespace SplooshKaboom
             TryQueue(r + 1, c, board);
             TryQueue(r, c - 1, board);
             TryQueue(r, c + 1, board);
+            TryQueue(r + 1, r + 1, board);
+            TryQueue(r - 1, c - 1, board);
+            TryQueue(r + 1, c - 1, board);
+            TryQueue(r - 1, c + 1, board);
         }
 
         /// <summary>

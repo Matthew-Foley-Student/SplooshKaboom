@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SplooshKaboom")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3bbc1da40dae3e7c6cb8db3391d3ccbe94c9372f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7b55de642c929ef67e5f1179b0dde07e2751130a")]
 [assembly: System.Reflection.AssemblyProductAttribute("SplooshKaboom")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SplooshKaboom")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
